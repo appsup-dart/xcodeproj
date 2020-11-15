@@ -27,8 +27,6 @@ class PList {
 
     switch (format) {
       case 'xml':
-      case 'plist':
-      case 'entitlements':
         File(path).writeAsStringSync(xmlPList.encode(content));
         break;
       case 'plain':
@@ -39,10 +37,10 @@ class PList {
 
   String _formatFromExtension(String path) {
     switch (path_lib.extension(path)) {
-      case 'plist':
-      case 'entitlements':
+      case '.plist':
+      case '.entitlements':
         return 'xml';
-      case 'pbxproj':
+      case '.pbxproj':
         return 'plain';
     }
     throw UnsupportedError('Cannot determine the format for file $path');
