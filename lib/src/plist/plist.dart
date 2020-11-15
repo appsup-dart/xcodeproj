@@ -7,7 +7,7 @@ import 'package:path/path.dart' as path_lib;
 class PList {
   final String path;
 
-  final Map content;
+  final Map<String, dynamic> content;
 
   PList.load(this.path) : content = _load(File(path).readAsStringSync());
 
