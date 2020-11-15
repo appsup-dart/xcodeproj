@@ -27,6 +27,8 @@ class PList {
 
     switch (format) {
       case 'xml':
+      case 'plist':
+      case 'entitlements':
         File(path).writeAsStringSync(xmlPList.encode(content));
         break;
       case 'plain':
