@@ -5,7 +5,7 @@ import 'package:xml/xml.dart';
 
 const xmlPList = XmlPListCodec();
 
-class XmlPListCodec extends Codec<Object, String> {
+class XmlPListCodec extends Codec<Object?, String> {
   const XmlPListCodec();
   @override
   Converter<String, Object> get decoder => const XmlPListDecoder();
@@ -30,7 +30,7 @@ class XmlPListDecoder extends Converter<String, Object> {
     switch (node.name.local) {
       case 'dict':
         var dict = <String, dynamic>{};
-        String key;
+        String? key;
         for (var n in node.children) {
           if (n is XmlElement) {
             if (n.name.local == 'key') {

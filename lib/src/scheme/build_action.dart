@@ -12,15 +12,15 @@ class BuildAction extends XmlElementWrapper {
   }
 
   /// Whether or not to detect and build implicit dependencies for each target
-  bool get buildImplicitDependencies => get('buildImplicitDependencies');
+  bool? get buildImplicitDependencies => get('buildImplicitDependencies');
 
-  set buildImplicitDependencies(bool value) =>
+  set buildImplicitDependencies(bool? value) =>
       set('buildImplicitDependencies', value);
 
   /// Whether or not to build the various targets in parallel
-  bool get parallelizeBuildables => get('parallelizeBuildables');
+  bool? get parallelizeBuildables => get('parallelizeBuildables');
 
-  set parallelizeBuildables(bool value) => set('parallelizeBuildables', value);
+  set parallelizeBuildables(bool? value) => set('parallelizeBuildables', value);
 
   /// The set of [BuildActionEntry]s associated with this Build Action.
   ///
@@ -48,29 +48,29 @@ class BuildActionEntry extends XmlElementWrapper {
   }
 
   /// Whether or not to build this target when building for Testing
-  bool get buildForTesting => get('buildForTesting');
+  bool? get buildForTesting => get('buildForTesting');
 
-  set buildForTesting(bool value) => set('buildForTesting', value);
+  set buildForTesting(bool? value) => set('buildForTesting', value);
 
   /// Whether or not to build this target when building for Running
-  bool get buildForRunning => get('buildForRunning');
+  bool? get buildForRunning => get('buildForRunning');
 
-  set buildForRunning(bool value) => set('buildForRunning', value);
+  set buildForRunning(bool? value) => set('buildForRunning', value);
 
   /// Whether or not to build this target when building for Profiling
-  bool get buildForProfiling => get('buildForProfiling');
+  bool? get buildForProfiling => get('buildForProfiling');
 
-  set buildForProfiling(bool value) => set('buildForProfiling', value);
+  set buildForProfiling(bool? value) => set('buildForProfiling', value);
 
   /// Whether or not to build this target when building for Archiving
-  bool get buildForArchiving => get('buildForArchiving');
+  bool? get buildForArchiving => get('buildForArchiving');
 
-  set buildForArchiving(bool value) => set('buildForArchiving', value);
+  set buildForArchiving(bool? value) => set('buildForArchiving', value);
 
   /// Whether or not to build this target when building for Analyzing
-  bool get buildForAnalyzing => get('buildForAnalyzing');
+  bool? get buildForAnalyzing => get('buildForAnalyzing');
 
-  set buildForAnalyzing(bool value) => set('buildForAnalyzing', value);
+  set buildForAnalyzing(bool? value) => set('buildForAnalyzing', value);
 
   /// The list of [BuildableReference]s this entry will build.
   Set<BuildableReference> get buildableReferences => getChildren(
@@ -80,7 +80,7 @@ class BuildActionEntry extends XmlElementWrapper {
 class BuildableReference extends XmlElementWrapper {
   BuildableReference._(XmlElement element) : super(element);
 
-  factory BuildableReference({PBXTarget target}) {
+  factory BuildableReference({required PBXTarget target}) {
     return BuildableReference._(
         XmlElement(XmlName('BuildableReference'))
           ..setAttribute('BuildableIdentifier', 'primary'))
@@ -88,21 +88,21 @@ class BuildableReference extends XmlElementWrapper {
   }
 
   /// The name of the final product when building this Buildable Reference.
-  String get buildableName => get('BuildableName');
+  String? get buildableName => get('BuildableName');
 
-  set buildableName(String value) => set('BuildableName', value);
+  set buildableName(String? value) => set('BuildableName', value);
 
   /// The name of the target this Buildable Reference points to
-  String get targetName => get('BlueprintName');
+  String? get targetName => get('BlueprintName');
 
   /// The Unique Identifier of the target (target.uuid) this Buildable Reference points to.
-  String get targetUuid => get('BlueprintIdentifier');
+  String? get targetUuid => get('BlueprintIdentifier');
 
   /// The string representing the container of that target.
-  String get targetReferencedContainer => get('ReferencedContainer');
+  String? get targetReferencedContainer => get('ReferencedContainer');
 
   void setReferenceTarget(PBXTarget target,
-      {bool overrideBuildableName = false, XCodeProj rootProject}) {
+      {bool overrideBuildableName = false, XCodeProj? rootProject}) {
     set('BlueprintIdentifier', target.uuid);
 
     if (overrideBuildableName) buildableName = _constructBuildableName(target);
@@ -113,7 +113,7 @@ class BuildableReference extends XmlElementWrapper {
 
   String _constructBuildableName(PBXTarget target) {
     if (target is PBXNativeTarget) {
-      return path_lib.basename(target.productReference.path);
+      return path_lib.basename(target.productReference!.path);
     } else if (target is PBXAggregateTarget) {
       return target.name;
     }
@@ -121,11 +121,11 @@ class BuildableReference extends XmlElementWrapper {
   }
 
   String _constructReferencedContainerUri(PBXTarget target,
-      [XCodeProj rootProject]) {
+      [XCodeProj? rootProject]) {
     var targetProject = target.project;
 
     rootProject ??= targetProject;
-    var rootProjectDirPath = rootProject.rootObject.projectDirPath;
+    var rootProjectDirPath = rootProject.rootObject!.projectDirPath;
 
     var path = (rootProjectDirPath != null && rootProjectDirPath.isNotEmpty)
         ? (rootProject.path + rootProjectDirPath)

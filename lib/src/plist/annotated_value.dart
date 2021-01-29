@@ -4,7 +4,7 @@ import 'plain_format.dart';
 class AnnotatedValue {
   final dynamic value;
 
-  final String annotation;
+  final String? annotation;
 
   AnnotatedValue(this.value, [this.annotation]);
 
@@ -26,7 +26,7 @@ class AnnotatedValue {
 
   String _annotationToString() {
     if (annotation == null) return '';
-    return ' /*' + annotation + '*/'; // TODO handle annotation containing '*/'
+    return ' /*' + annotation! + '*/'; // TODO handle annotation containing '*/'
   }
 
   String _valueToString(String indent) {
@@ -45,7 +45,7 @@ class AnnotatedValue {
                 '\t': 't',
                 '\\': '\\',
                 '"': '"',
-              }[match.group(0)]}');
+              }[match.group(0)!]}');
       return '"$content"';
     }
     if (value is List<AnnotatedValue>) {

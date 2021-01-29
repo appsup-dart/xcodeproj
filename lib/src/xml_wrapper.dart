@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:xml/xml.dart';
 
 class XmlElementWrapper {
@@ -11,12 +12,12 @@ class XmlElementWrapper {
 extension XmlElementWrapperX on XmlElementWrapper {
   XmlElement get element => _element;
 
-  T get<T>(String key) {
+  T? get<T>(String key) {
     var v = _element.getAttribute(key);
     if (v == null) return null;
 
     if (T == bool) {
-      return const {'YES': true, 'NO': false}[v] as T;
+      return const {'YES': true, 'NO': false}[v] as T?;
     }
     if (T == String) {
       return v as T;
@@ -28,7 +29,7 @@ extension XmlElementWrapperX on XmlElementWrapper {
     if (value == null) {
       _element.removeAttribute(key);
     } else if (value is bool) {
-      var v = const {true: 'YES', false: 'NO'}[value];
+      var v = const {true: 'YES', false: 'NO'}[value]!;
       _element.setAttribute(key, v);
     } else if (value is String) {
       _element.setAttribute(key, value);
@@ -51,10 +52,9 @@ extension XmlElementWrapperX on XmlElementWrapper {
     }
   }
 
-  T getSingleChild<T extends XmlElementWrapper>(
+  T? getSingleChild<T extends XmlElementWrapper>(
           String tagName, T Function(XmlElement element) factory) =>
-      getChildren<T>(tagName, factory)
-          .singleWhere((element) => true, orElse: () => null);
+      getChildren<T>(tagName, factory).singleWhereOrNull((element) => true);
 }
 
 class XmlNodeListWrapper<T extends XmlElementWrapper> extends SetBase<T> {
@@ -74,7 +74,7 @@ class XmlNodeListWrapper<T extends XmlElementWrapper> extends SetBase<T> {
   }
 
   @override
-  bool contains(Object element) {
+  bool contains(Object? element) {
     return element is T && element._element.parentElement == _element;
   }
 
@@ -86,13 +86,13 @@ class XmlNodeListWrapper<T extends XmlElementWrapper> extends SetBase<T> {
   int get length => _element.findElements(_tagName).length;
 
   @override
-  T lookup(Object element) {
+  T? lookup(Object? element) {
     if (!contains(element)) return null;
-    return element;
+    return element as T?;
   }
 
   @override
-  bool remove(Object value) {
+  bool remove(Object? value) {
     if (!contains(value)) return false;
     _element.children.remove((value as T)._element);
     return true;

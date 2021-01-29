@@ -6,7 +6,7 @@ class ArchiveAction extends SchemeAction {
   factory ArchiveAction(
       {String buildConfiguration = 'Release',
       bool revealArchiveInOrganizer = true,
-      String customArchiveName}) {
+      String? customArchiveName}) {
     return ArchiveAction._(XmlElement(XmlName('ArchiveAction')))
       ..buildConfiguration = buildConfiguration
       ..revealArchiveInOrganizer = revealArchiveInOrganizer
@@ -14,13 +14,13 @@ class ArchiveAction extends SchemeAction {
   }
 
   /// The custom name to give to the archive.
-  String get customArchiveName => get('customArchiveName');
+  String? get customArchiveName => get('customArchiveName');
 
-  set customArchiveName(String value) => set('customArchiveName', value);
+  set customArchiveName(String? value) => set('customArchiveName', value);
 
   /// Whether the Archive will be revealed in Xcode's Organizer after it's done building.
-  bool get revealArchiveInOrganizer => get('revealArchiveInOrganizer');
+  bool? get revealArchiveInOrganizer => get('revealArchiveInOrganizer');
 
-  set revealArchiveInOrganizer(bool value) =>
+  set revealArchiveInOrganizer(bool? value) =>
       set('revealArchiveInOrganizer', value);
 }

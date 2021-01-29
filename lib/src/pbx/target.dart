@@ -2,8 +2,8 @@ part of pbx;
 
 mixin PBXTargetMixin on PBXElement {
   /// A reference to a [XCConfigurationList] element
-  XCConfigurationList get buildConfigurationList =>
-      project.getObject(get('buildConfigurationList'));
+  XCConfigurationList? get buildConfigurationList =>
+      project.getObject(get('buildConfigurationList')) as XCConfigurationList?;
 
   /// A list of references to [PBXBuildPhase] elements
   List<PBXBuildPhase> get buildPhases => getObjectList('buildPhases');
@@ -34,8 +34,8 @@ mixin PBXNativeTargetMixin on PBXTarget {
   String get productInstallPath => get('productInstallPath');
 
   /// A reference to a [PBXFileReference] element
-  PBXFileReference get productReference =>
-      project.getObject(get('productReference'));
+  PBXFileReference? get productReference =>
+      project.getObject(get('productReference')) as PBXFileReference?;
 
   /// See the PBXProductType enumeration
   String get productType => get('productType');

@@ -9,22 +9,22 @@ import 'pbx.dart';
 mixin XCodeProjMixin on SnapshotView {
   int get archiveVersion => get('archiveVersion');
 
-  Map<String, dynamic> get classes => getMap('classes');
+  Map<String, dynamic> get classes => getMap('classes')!;
 
   int get objectVersion => get('objectVersion');
 
   Iterable<PBXElement> get objects => snapshot
       .child('objects')
-      .asMap()
+      .asMap()!
       .keys
-      .map((k) => PBXElement(this, 'objects/$k'));
+      .map((k) => PBXElement(this as XCodeProj, 'objects/$k'));
 
-  PBXElement getObject(String uuid) =>
+  PBXElement? getObject(String uuid) =>
       snapshot.child('objects/$uuid').value == null
           ? null
-          : PBXElement(this, 'objects/$uuid');
+          : PBXElement(this as XCodeProj, 'objects/$uuid');
 
-  PBXProject get rootObject => getObject(get('rootObject'));
+  PBXProject? get rootObject => getObject(get('rootObject')) as PBXProject?;
 
   /// The build configuration list of the project
   Iterable<XCConfigurationList> get buildConfigurationList =>
@@ -61,12 +61,12 @@ class XCodeProj extends ModifiableSnapshotView with XCodeProjMixin {
 
   void duplicateBuildConfiguration(String from, String to) {
     var lists = [
-      rootObject.buildConfigurationList,
-      ...rootObject.targets.map((t) => t.buildConfigurationList)
+      rootObject!.buildConfigurationList,
+      ...rootObject!.targets.map((t) => t.buildConfigurationList)
     ];
 
     for (var l in lists) {
-      var config = l.getByName(from);
+      var config = l!.getByName(from);
       var toConfig = l.getByName(to);
       if (toConfig == null) {
         l.addBuildConfiguration(to,
@@ -91,7 +91,7 @@ class XCodeProj extends ModifiableSnapshotView with XCodeProjMixin {
     return dir
         .listSync()
         .where((f) => f.path.endsWith('.xcscheme'))
-        .map((f) => XCScheme.load(f.path));
+        .map((f) => XCScheme.load(f.path)) as List<XCScheme>;
   }
 
   XCScheme createScheme(String name, PBXTarget target) {
