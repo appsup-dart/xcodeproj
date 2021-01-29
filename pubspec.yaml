@@ -11,7 +11,7 @@ dependencies:
   petitparser: ^3.1.0
   xml: ^4.5.1
   snapshot: ^0.1.0-dev.3
-  pointycastle: ^1.0.0
+  crypto: ^2.1.5
   path: ^1.7.0
   quiver: ^2.1.3
 
