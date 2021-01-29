@@ -6,6 +6,7 @@ import 'package:snapshot/snapshot.dart';
 import 'package:xcodeproj/src/uuid.dart';
 import 'package:xcodeproj/src/xcode.dart';
 import 'package:quiver/core.dart';
+import 'package:collection/collection.dart';
 import 'package:path/path.dart' as path_lib;
 
 part 'pbx/build_file.dart';
@@ -42,28 +43,29 @@ extension ChildSnapshotViewX on ChildSnapshotView {
   String get path => _path;
 
   /// Gets and converts the value at [path] to type T
-  T get<T>(String path, {String format}) =>
+  T get<T>(String path, {String? format}) =>
       _snapshot.child(path).as(format: format);
 
   /// Gets and converts the value at [path] to type List<T>
-  List<T> getList<T>(String path, {String format}) =>
-      _snapshot.child(path).asList(format: format);
+  List<T> getList<T>(String path, {String? format}) =>
+      _snapshot.child(path).asList(format: format)!;
 
   /// Gets and converts the value at [path] to type Map<String,T>
-  Map<String, T> getMap<T>(String path, {String format}) =>
+  Map<String, T> getMap<T>(String path, {String? format}) =>
       ChildSnapshotMapView(_rootSnapshotView, '$_path/$path');
 }
 
 class ChildSnapshotMapView<T> extends ChildSnapshotView
     with MapMixin<String, T> {
-  final String format;
+  final String? format;
 
   ChildSnapshotMapView(SnapshotView rootSnapshotView, String path,
       {this.format})
       : super(rootSnapshotView, path);
 
   @override
-  T operator [](Object key) => _rootSnapshotView.getMap(_path)[key];
+  T? operator [](Object? key) =>
+      _rootSnapshotView.getMap(_path)![key as String];
 
   @override
   void operator []=(String key, T value) {
@@ -84,10 +86,10 @@ class ChildSnapshotMapView<T> extends ChildSnapshotView
   }
 
   @override
-  Iterable<String> get keys => _rootSnapshotView.getMap(path).keys;
+  Iterable<String> get keys => _rootSnapshotView.getMap(path)!.keys;
 
   @override
-  T remove(Object key) {
+  T remove(Object? key) {
     if (_rootSnapshotView is ModifiableSnapshotView) {
       var v = (_rootSnapshotView as ModifiableSnapshotView).get('$_path/$key');
       (_rootSnapshotView as ModifiableSnapshotView).set('$_path/$key', null);

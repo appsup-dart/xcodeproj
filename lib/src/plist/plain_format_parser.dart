@@ -73,7 +73,7 @@ class PListGrammarDefinition extends GrammarDefinition {
                   includeSeparators: false, optionalSeparatorAtEnd: true)
               .map((l) =>
                   Map<AnnotatedValue, AnnotatedValue>.fromEntries(l.cast()))
-              .optional(<AnnotatedValue, AnnotatedValue>{}) &
+              .optionalWith(<AnnotatedValue, AnnotatedValue>{}) &
           token('}'))
       .pick(1);
 
@@ -86,7 +86,7 @@ class PListGrammarDefinition extends GrammarDefinition {
               .separatedBy(token(','),
                   includeSeparators: false, optionalSeparatorAtEnd: true)
               .map((l) => l.cast<AnnotatedValue>())
-              .optional(<AnnotatedValue>[])) &
+              .optionalWith(<AnnotatedValue>[])) &
           token(')'))
       .pick(1);
 

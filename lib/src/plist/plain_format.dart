@@ -7,23 +7,23 @@ import 'plain_format_parser.dart';
 
 const plainPList = PlainPListCodec();
 
-class PlainPListCodec extends Codec<Object, String> {
+class PlainPListCodec extends Codec<Object?, String> {
   const PlainPListCodec();
   @override
-  Converter<String, Object> get decoder => const PlainPListDecoder();
+  Converter<String, Object?> get decoder => const PlainPListDecoder();
 
   @override
   Converter<Object, String> get encoder => const PlainPlistEncoder();
 }
 
-class PlainPListDecoder extends Converter<String, Object> {
+class PlainPListDecoder extends Converter<String, Object?> {
   const PlainPListDecoder();
   @override
-  Object convert(String input) {
+  Object? convert(String input) {
     return _fromAnnotatedValue(PListGrammar().parse(input).value);
   }
 
-  Object _fromAnnotatedValue(AnnotatedValue value) {
+  Object? _fromAnnotatedValue(AnnotatedValue value) {
     if (value.value is List<AnnotatedValue>) {
       return value.value.map(_fromAnnotatedValue).toList();
     }
@@ -66,7 +66,7 @@ class PlainPlistEncoder extends Converter<Object, String> {
       return AnnotatedValue(object);
     }
     if (object is List) {
-      return AnnotatedValue(object.map(_toAnnotatedValue).toList());
+      return AnnotatedValue(object.map((v) => _toAnnotatedValue(v)).toList());
     }
     if (object is Map) {
       var m = {...object}..removeWhere((k, v) => v == null);

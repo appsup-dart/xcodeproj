@@ -18,25 +18,25 @@ class TestAction extends SchemeAction {
 
   /// Whether this Test Action should use the same arguments and environment variables
   /// as the Launch Action.
-  bool get shouldUseLaunchSchemeArgsEnv => get('shouldUseLaunchSchemeArgsEnv');
+  bool? get shouldUseLaunchSchemeArgsEnv => get('shouldUseLaunchSchemeArgsEnv');
 
-  set shouldUseLaunchSchemeArgsEnv(bool value) =>
+  set shouldUseLaunchSchemeArgsEnv(bool? value) =>
       set('shouldUseLaunchSchemeArgsEnv', value);
 
   /// Whether this Test Action should disable detection of UI API misuse
   /// from background threads
-  bool get disableMainThreadChecker => get('disableMainThreadChecker');
+  bool? get disableMainThreadChecker => get('disableMainThreadChecker');
 
-  set disableMainThreadChecker(bool value) =>
+  set disableMainThreadChecker(bool? value) =>
       set('disableMainThreadChecker', value);
 
   /// Whether Clang Code Coverage is enabled ('Gather coverage data' turned ON)
-  bool get codeCoverageEnabled => get('codeCoverageEnabled');
+  bool? get codeCoverageEnabled => get('codeCoverageEnabled');
 
-  set codeCoverageEnabled(bool value) => set('codeCoverageEnabled', value);
+  set codeCoverageEnabled(bool? value) => set('codeCoverageEnabled', value);
 
   Set<TestableReference> get testables =>
-      getSingleChild('Testables', (e) => XmlElementWrapper(e))
+      getSingleChild('Testables', (e) => XmlElementWrapper(e))!
           .getChildren('TestableReference', (e) => TestableReference._(e));
 
   Set<MacroExpansion> get macroExpansions =>
@@ -44,13 +44,13 @@ class TestAction extends SchemeAction {
 
   /// The EnvironmentVariables that will be defined at app launch
   EnvironmentVariables get environmentVariables => getSingleChild(
-      'EnvironmentVariables', (element) => EnvironmentVariables._(element));
+      'EnvironmentVariables', (element) => EnvironmentVariables._(element))!;
 
   set environmentVariables(EnvironmentVariables value) => setSingleChild(value);
 
   /// The CommandLineArguments that will be passed at app launch
   CommandLineArguments get commandLineArguments => getSingleChild(
-      'CommandLineArguments', (element) => CommandLineArguments._(element));
+      'CommandLineArguments', (element) => CommandLineArguments._(element))!;
 
   set commandLineArguments(CommandLineArguments value) => setSingleChild(value);
 }
@@ -64,19 +64,19 @@ class TestableReference extends XmlElementWrapper {
   }
 
   /// Whether or not this TestableReference (test bundle) should be skipped or not
-  bool get skipped => get('skipped');
+  bool? get skipped => get('skipped');
 
-  set skipped(bool value) => set('skipped', value);
+  set skipped(bool? value) => set('skipped', value);
 
   /// Whether or not this TestableReference (test bundle) should be run in parallel or not
-  bool get parallelizable => get('parallelizable');
+  bool? get parallelizable => get('parallelizable');
 
-  set parallelizable(bool value) => set('parallelizable', value);
+  set parallelizable(bool? value) => set('parallelizable', value);
 
   /// The execution order for this TestableReference (test bundle)
-  String get testExecutionOrdering => get('testExecutionOrdering');
+  String? get testExecutionOrdering => get('testExecutionOrdering');
 
-  set testExecutionOrdering(String value) =>
+  set testExecutionOrdering(String? value) =>
       set('testExecutionOrdering', value);
 
   /// Whether or not this TestableReference (test bundle) should be run in randomized order.
@@ -86,17 +86,17 @@ class TestableReference extends XmlElementWrapper {
       getChildren('BuildableReference', (e) => BuildableReference._(e));
 
   Set<Test> get skippedTests =>
-      getSingleChild('SkippedTests', (e) => XmlElementWrapper(e))
+      getSingleChild('SkippedTests', (e) => XmlElementWrapper(e))!
           .getChildren('Test', (e) => Test._(e));
 
   /// Whether or not this TestableReference (test bundle) should use a whitelist or not
-  bool get useTestSelectionWhitelist => get('useTestSelectionWhitelist');
+  bool? get useTestSelectionWhitelist => get('useTestSelectionWhitelist');
 
-  set useTestSelectionWhitelist(bool value) =>
+  set useTestSelectionWhitelist(bool? value) =>
       set('useTestSelectionWhitelist', value);
 
   Set<Test> get selectedTests =>
-      getSingleChild('SelectedTests', (e) => XmlElementWrapper(e))
+      getSingleChild('SelectedTests', (e) => XmlElementWrapper(e))!
           .getChildren('Test', (e) => Test._(e));
 }
 
@@ -108,7 +108,7 @@ class MacroExpansion extends XmlElementWrapper {
   }
 
   BuildableReference get buildableReference =>
-      getSingleChild('BuildableReference', (e) => BuildableReference._(e));
+      getSingleChild('BuildableReference', (e) => BuildableReference._(e))!;
 
   set buildableReference(BuildableReference value) => setSingleChild(value);
 }
@@ -120,7 +120,7 @@ class Test extends XmlElementWrapper {
     return Test._(XmlElement(XmlName('Test')));
   }
 
-  String get identifier => get('Identifier');
+  String? get identifier => get('Identifier');
 
-  set identifier(String value) => set('Identifier', value);
+  set identifier(String? value) => set('Identifier', value);
 }

@@ -7,7 +7,7 @@ void main(List<String> args) {
   printAllSourceFiles(proj.targets.last);
   setBuildConfigurationToAllTargets(proj, 'MY_CUSTOM_FLAG', 'TRUE');
 
-  printTree(proj.rootObject.mainGroup, '');
+  printTree(proj.rootObject!.mainGroup!, '');
 
   printBuildConfigurations(proj);
 }
@@ -15,13 +15,13 @@ void main(List<String> args) {
 void printBuildConfigurations(XCodeProj proj) {
   print('Root project');
   for (var config
-      in proj.rootObject.buildConfigurationList.buildConfigurations) {
+      in proj.rootObject!.buildConfigurationList!.buildConfigurations) {
     print('  ${config.name}');
     print('    ${config.baseConfigurationReference?.realPath ?? ''}');
   }
   for (var target in proj.targets) {
     print(target.name);
-    for (var config in target.buildConfigurationList.buildConfigurations) {
+    for (var config in target.buildConfigurationList!.buildConfigurations) {
       print('  ${config.name}');
       print('    ${config.baseConfigurationReference?.realPath ?? ''}');
     }
@@ -52,7 +52,7 @@ void printAllSourceFiles(PBXTarget target) {
   for (var b in target.buildPhases) {
     print('- build phase: ${b.runtimeType}');
     for (var f in b.files) {
-      print('  - ${f.fileRef.realPath}');
+      print('  - ${f.fileRef!.realPath}');
     }
   }
   print('');
@@ -62,7 +62,7 @@ void printAllSourceFiles(PBXTarget target) {
 void setBuildConfigurationToAllTargets(
     XCodeProj proj, String key, dynamic value) {
   for (var target in proj.targets) {
-    for (var config in target.buildConfigurationList.buildConfigurations) {
+    for (var config in target.buildConfigurationList!.buildConfigurations) {
       config.buildSettings[key] = value;
     }
   }

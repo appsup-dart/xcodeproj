@@ -7,10 +7,10 @@ mixin PBXFileElementMixin on PBXElement {
   /// See the PBXSourceTree enumeration.
   String get sourceTree => get('sourceTree');
 
-  PBXFileElement get parent {
-    return project.objects.whereType<PBXGroup>().firstWhere(
-        (element) => element.children.any((v) => v == this),
-        orElse: () => null);
+  PBXFileElement? get parent {
+    return project.objects
+        .whereType<PBXGroup>()
+        .firstWhereOrNull((element) => element.children.any((v) => v == this));
   }
 
   String get realPath {
@@ -22,12 +22,12 @@ mixin PBXFileElementMixin on PBXElement {
     return path_lib.dirname(path);
   }
 
-  String get sourceTreeRealPath {
+  String? get sourceTreeRealPath {
     switch (sourceTree) {
       case '<group>':
         var parent = this.parent;
         if (parent == null) {
-          return project.projectDir + project.rootObject.projectDirPath;
+          return project.projectDir + project.rootObject!.projectDirPath;
         }
         return parent.realPath;
       case 'SOURCE_ROOT':
@@ -65,14 +65,14 @@ mixin PBXGroupMixin on PBXFileElement {
   /// A list of references to [PBXFileElement] elements
   List<PBXFileElement> get children => getObjectList('children');
 
-  PBXFileReference addReference(String path, {String sourceTree = '<group>'}) {
+  PBXFileReference? addReference(String path, {String sourceTree = '<group>'}) {
     var uuid = UuidGenerator().random();
 
     project.set('objects/$uuid',
         {'isa': 'PBXFileReference', 'path': path, 'sourceTree': sourceTree});
     project.set('$_path/children', [...getList('children'), uuid]);
 
-    return project.getObject(uuid);
+    return project.getObject(uuid) as PBXFileReference?;
   }
 }
 

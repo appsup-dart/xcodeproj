@@ -17,14 +17,14 @@ class ProfileAction extends SchemeAction {
 
   /// Whether this Profile Action should use the same arguments and environment variables
   /// as the Launch Action.
-  bool get shouldUseLaunchSchemeArgsEnv => get('shouldUseLaunchSchemeArgsEnv');
+  bool? get shouldUseLaunchSchemeArgsEnv => get('shouldUseLaunchSchemeArgsEnv');
 
-  set shouldUseLaunchSchemeArgsEnv(bool value) =>
+  set shouldUseLaunchSchemeArgsEnv(bool? value) =>
       set('shouldUseLaunchSchemeArgsEnv', value);
 
   /// The BuildableProductRunnable to launch when launching the Profile action
   BuildableProductRunnable get buildableProductRunnable => getSingleChild(
-      'BuildableProductRunnable', (e) => BuildableProductRunnable._(e));
+      'BuildableProductRunnable', (e) => BuildableProductRunnable._(e))!;
 
   set buildableProductRunnable(BuildableProductRunnable e) => setSingleChild(e);
 }

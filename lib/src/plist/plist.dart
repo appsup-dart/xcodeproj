@@ -7,22 +7,22 @@ import 'package:path/path.dart' as path_lib;
 class PList {
   final String path;
 
-  final Map<String, dynamic> content;
+  final Map<String, dynamic>? content;
 
-  PList.load(this.path) : content = _load(File(path).readAsStringSync());
+  PList.load(this.path) : content = _load(File(path).readAsStringSync()) as Map<String, dynamic>?;
 
-  static Map _load(String content) {
+  static Map? _load(String content) {
     if (content.startsWith('bplist')) {
       throw UnsupportedError('binary plist not supported');
     }
 
     if (content.startsWith('<?xml')) {
-      return xmlPList.decode(content);
+      return xmlPList.decode(content) as Map<dynamic, dynamic>?;
     }
-    return plainPList.decode(content);
+    return plainPList.decode(content) as Map<dynamic, dynamic>?;
   }
 
-  void save({String format}) {
+  void save({String? format}) {
     format ??= _formatFromExtension(path);
 
     switch (format) {

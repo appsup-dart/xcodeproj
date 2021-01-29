@@ -2,8 +2,8 @@ part of pbx;
 
 mixin PBXProjectMixin on PBXElement {
   /// A reference to a [XCConfigurationList] element
-  XCConfigurationList get buildConfigurationList =>
-      project.getObject(get('buildConfigurationList'));
+  XCConfigurationList? get buildConfigurationList =>
+      project.getObject(get('buildConfigurationList')) as XCConfigurationList?;
 
   /// A string representation of the XcodeCompatibilityVersion
   String get compatibilityVersion => get('compatibilityVersion');
@@ -18,10 +18,10 @@ mixin PBXProjectMixin on PBXElement {
   List<String> get knownRegions => getList('knownRegions');
 
   /// A reference to a [PBXGroup] element.
-  PBXGroup get mainGroup => project.getObject(get('mainGroup'));
+  PBXGroup? get mainGroup => project.getObject(get('mainGroup')) as PBXGroup?;
 
   /// A reference to a [PBXGroup] element.
-  PBXGroup get productRefGroup => project.getObject(get('productRefGroup'));
+  PBXGroup? get productRefGroup => project.getObject(get('productRefGroup')) as PBXGroup?;
 
   /// The relative path of the project.
   String get projectDirPath => get('projectDirPath');

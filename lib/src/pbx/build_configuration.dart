@@ -2,10 +2,10 @@ part of pbx;
 
 mixin XCBuildConfigurationMixin on PBXElement {
   /// The path to a xcconfig file
-  PBXFileReference get baseConfigurationReference =>
-      project.getObject(get('baseConfigurationReference'));
+  PBXFileReference? get baseConfigurationReference =>
+      project.getObject(get('baseConfigurationReference')) as PBXFileReference?;
 
-  set baseConfigurationReference(PBXFileReference value) {
+  set baseConfigurationReference(PBXFileReference? value) {
     project.set('objects/$uuid/baseConfigurationReference', value?.uuid);
   }
 
@@ -33,12 +33,12 @@ mixin XCConfigurationListMixin on PBXElement {
 
   String get defaultConfigurationName => get('defaultConfigurationName');
 
-  XCBuildConfiguration getByName(String name) =>
-      buildConfigurations.firstWhere((v) => v.name == name, orElse: () => null);
+  XCBuildConfiguration? getByName(String name) =>
+      buildConfigurations.firstWhereOrNull((v) => v.name == name);
 
-  XCBuildConfiguration addBuildConfiguration(String name,
-      {Map<String, dynamic> buildSettings,
-      PBXFileReference baseConfigurationReference}) {
+  XCBuildConfiguration? addBuildConfiguration(String name,
+      {Map<String, dynamic>? buildSettings,
+      PBXFileReference? baseConfigurationReference}) {
     var existing = getByName(name);
 
     if (existing != null) {
@@ -58,7 +58,7 @@ mixin XCConfigurationListMixin on PBXElement {
     var p = 'objects/${this.uuid}/buildConfigurations';
     project.set(p, [...getList('buildConfigurations'), uuid]);
 
-    return project.getObject(uuid);
+    return project.getObject(uuid) as XCBuildConfiguration?;
   }
 }
 

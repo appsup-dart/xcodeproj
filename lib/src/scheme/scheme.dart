@@ -41,32 +41,32 @@ class XCScheme extends XmlElementWrapper {
   }
 
   AnalyzeAction get analyzeAction =>
-      getSingleChild('AnalyzeAction', (e) => AnalyzeAction._(e));
+      getSingleChild('AnalyzeAction', (e) => AnalyzeAction._(e))!;
 
   set analyzeAction(AnalyzeAction value) => setSingleChild(value);
 
   ArchiveAction get archiveAction =>
-      getSingleChild('ArchiveAction', (e) => ArchiveAction._(e));
+      getSingleChild('ArchiveAction', (e) => ArchiveAction._(e))!;
 
   set archiveAction(ArchiveAction value) => setSingleChild(value);
 
   BuildAction get buildAction =>
-      getSingleChild('BuildAction', (e) => BuildAction._(e));
+      getSingleChild('BuildAction', (e) => BuildAction._(e))!;
 
   set buildAction(BuildAction value) => setSingleChild(value);
 
   LaunchAction get launchAction =>
-      getSingleChild('LaunchAction', (e) => LaunchAction._(e));
+      getSingleChild('LaunchAction', (e) => LaunchAction._(e))!;
 
   set launchAction(LaunchAction value) => setSingleChild(value);
 
   ProfileAction get profileAction =>
-      getSingleChild('ProfileAction', (e) => ProfileAction._(e));
+      getSingleChild('ProfileAction', (e) => ProfileAction._(e))!;
 
   set profileAction(ProfileAction value) => setSingleChild(value);
 
   TestAction get testAction =>
-      getSingleChild('TestAction', (e) => TestAction._(e));
+      getSingleChild('TestAction', (e) => TestAction._(e))!;
 
   set testAction(TestAction value) => setSingleChild(value);
 
@@ -90,7 +90,7 @@ class XCScheme extends XmlElementWrapper {
   void save() {
     var file = File(_path);
     file.parent.createSync(recursive: true);
-    file.writeAsStringSync(element.document.toXmlString(pretty: true));
+    file.writeAsStringSync(element.document!.toXmlString(pretty: true));
   }
 }
 
@@ -98,7 +98,7 @@ abstract class SchemeAction extends XmlElementWrapper {
   SchemeAction(XmlElement element) : super(element);
 
   /// The build configuration associated with this action (usually either 'Debug' or 'Release').
-  String get buildConfiguration => get('buildConfiguration');
+  String? get buildConfiguration => get('buildConfiguration');
 
-  set buildConfiguration(String value) => set('buildConfiguration', value);
+  set buildConfiguration(String? value) => set('buildConfiguration', value);
 }

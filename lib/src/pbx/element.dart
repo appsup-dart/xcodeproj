@@ -53,7 +53,7 @@ abstract class PBXElement extends ChildSnapshotView {
   String get uuid => path.split('/').last;
 
   /// The project that owns the object.
-  XCodeProj get project => _rootSnapshotView;
+  XCodeProj get project => _rootSnapshotView as XCodeProj;
 }
 
 extension PBXElementX on PBXElement {
