@@ -70,15 +70,15 @@ class PlainPlistEncoder extends Converter<Object, String> {
     }
     if (object is Map) {
       var m = {...object}..removeWhere((k, v) => v == null);
-      return AnnotatedValue(m.map(
-          (k, v) => MapEntry<AnnotatedValue, AnnotatedValue>(
+      return AnnotatedValue(m.map((k, v) =>
+          MapEntry<AnnotatedValue, AnnotatedValue>(
               _toAnnotatedValue(k), _toAnnotatedValue(v))));
     }
     return AnnotatedValue(object);
   }
 }
 
-extension Hex on Uint8List {
+extension Hex on List<int> {
   String toHex() {
     return map((v) => (v < 16 ? '0' : '') + v.toRadixString(16)).join();
   }
