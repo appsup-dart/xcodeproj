@@ -2,7 +2,7 @@ part of pbx;
 
 mixin PBXFileElementMixin on PBXElement {
   /// The filename
-  String get name => get('name');
+  String? get name => get('name');
 
   /// See the PBXSourceTree enumeration.
   String get sourceTree => get('sourceTree');
@@ -40,7 +40,7 @@ mixin PBXFileElementMixin on PBXElement {
   }
 
   /// The path to the filename
-  String get path => get('path');
+  String? get path => get('path');
 }
 
 abstract class PBXFileElement = PBXElement with PBXFileElementMixin;

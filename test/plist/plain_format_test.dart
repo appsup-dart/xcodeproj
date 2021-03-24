@@ -29,7 +29,7 @@ void main() {
   array = (3);
 }''';
     test('Encoding plist to plain', () {
-      String encoded = plainPList.encode(value);
+      var encoded = plainPList.encode(value);
       expect(encoded.split('\n').first, r'// !$*UTF8*$!');
       expect(plainPList.decode(encoded), value);
     });

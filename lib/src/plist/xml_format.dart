@@ -92,9 +92,6 @@ class XmlPlistEncoder extends Converter<Object, String> {
   }
 
   XmlElement _toXmlElement(Object value) {
-    if (value == null) {
-      throw ArgumentError.notNull('value');
-    }
     if (value is Map) {
       var e = XmlElement(XmlName('dict'));
 

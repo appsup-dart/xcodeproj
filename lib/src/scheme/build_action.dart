@@ -113,7 +113,7 @@ class BuildableReference extends XmlElementWrapper {
 
   String _constructBuildableName(PBXTarget target) {
     if (target is PBXNativeTarget) {
-      return path_lib.basename(target.productReference!.path);
+      return path_lib.basename(target.productReference!.path!);
     } else if (target is PBXAggregateTarget) {
       return target.name;
     }
@@ -127,13 +127,13 @@ class BuildableReference extends XmlElementWrapper {
     rootProject ??= targetProject;
     var rootProjectDirPath = rootProject.rootObject!.projectDirPath;
 
-    var path = (rootProjectDirPath != null && rootProjectDirPath.isNotEmpty)
+    var path = rootProjectDirPath.isNotEmpty
         ? (rootProject.path + rootProjectDirPath)
         : rootProject.projectDir;
     var relativePath = path_lib.relative(targetProject.path, from: path);
     if (relativePath == '.') {
       relativePath = path_lib.basename(targetProject.path);
     }
-    return 'container:${relativePath}';
+    return 'container:$relativePath';
   }
 }
