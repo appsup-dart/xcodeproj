@@ -1,21 +1,21 @@
 name: xcodeproj
 description: A library for reading and modifying XCode projects.
-version: 0.2.0-nullsafety.0
+version: 0.2.0
 homepage: https://github.com/appsup-dart/xcodeproj
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
   
 
 dependencies:
-  petitparser: ^4.0.0-nullsafety.1
-  xml: ^5.0.0-nullsafety.1
-  snapshot: ^0.2.0-nullsafety.0
-  crypto: ^3.0.0-nullsafety.0
-  path: ^1.8.0-nullsafety.3
-  quiver: ^3.0.0-nullsafety.3
-  collection: ^1.15.0-nullsafety.4
+  petitparser: ^4.0.0
+  xml: ^5.0.0
+  snapshot: ^0.2.0
+  crypto: ^3.0.0
+  path: ^1.8.0
+  quiver: ^3.0.0
+  collection: ^1.15.0
 
 dev_dependencies:
-  pedantic: ^1.10.0-nullsafety.3
-  test: ^1.16.0-nullsafety.17
+  pedantic: ^1.10.0
+  test: ^1.16.0
