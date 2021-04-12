@@ -20,7 +20,8 @@ class PlainPListDecoder extends Converter<String, Object?> {
   const PlainPListDecoder();
   @override
   Object? convert(String input) {
-    return _fromAnnotatedValue(PListGrammar().parse(input).value);
+    return _fromAnnotatedValue(
+        PListGrammarDefinition().build().parse(input).value);
   }
 
   Object? _fromAnnotatedValue(AnnotatedValue value) {

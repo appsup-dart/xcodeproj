@@ -5,13 +5,9 @@ import 'package:petitparser/petitparser.dart';
 import 'annotated_value.dart';
 import 'plain_format.dart';
 
-class PListGrammar extends GrammarParser {
-  PListGrammar() : super(PListGrammarDefinition());
-}
-
 class PListGrammarDefinition extends GrammarDefinition {
   @override
-  Parser start() => ref(annotatedValue).end();
+  Parser start() => ref0(annotatedValue).end();
 
   Parser<String> unquotedString() =>
       (word() | anyOf(r'_$/:\.-')).plus().flatten();
@@ -30,7 +26,8 @@ class PListGrammarDefinition extends GrammarDefinition {
               .star()
               .map((l) => l.join()) &
           quote)
-      .pick(1);
+      .pick(1)
+      .cast();
 
   Parser<Uint8List> data() => (char('<') &
               (digit() | pattern('a-f') | pattern('A-F') | char(' '))
@@ -48,16 +45,17 @@ class PListGrammarDefinition extends GrammarDefinition {
       });
 
   Parser<String> singleLineComment() =>
-      (string('//') & newline().neg().star().flatten()).pick(1);
+      (string('//') & newline().neg().star().flatten()).pick(1).cast();
 
   Parser<String> multiLineComment() =>
       (string('/*') & string('*/').neg().star().flatten() & string('*/'))
-          .pick(1);
+          .pick(1)
+          .cast();
 
   Parser<String> comment() => (singleLineComment() | multiLineComment()).cast();
 
   Parser value() =>
-      ref(dictionary) | array() | data() | quotedString() | unquotedString();
+      ref0(dictionary) | array() | data() | quotedString() | unquotedString();
 
   Parser<AnnotatedValue> annotatedValue() =>
       (value() & comment().trim().star()).map((l) {
@@ -75,20 +73,22 @@ class PListGrammarDefinition extends GrammarDefinition {
                   Map<AnnotatedValue, AnnotatedValue>.fromEntries(l.cast()))
               .optionalWith(<AnnotatedValue, AnnotatedValue>{}) &
           token('}'))
-      .pick(1);
+      .pick(1)
+      .cast();
 
   Parser<MapEntry> keyValue() =>
-      (ref(annotatedValue) & token('=') & ref(annotatedValue))
+      (ref0(annotatedValue) & token('=') & ref0(annotatedValue))
           .map((l) => MapEntry<AnnotatedValue, AnnotatedValue>(l[0], l[2]));
 
   Parser<List<AnnotatedValue>> array() => (token('(') &
-          (ref(annotatedValue)
+          (ref0(annotatedValue)
               .separatedBy(token(','),
                   includeSeparators: false, optionalSeparatorAtEnd: true)
               .map((l) => l.cast<AnnotatedValue>())
               .optionalWith(<AnnotatedValue>[])) &
           token(')'))
-      .pick(1);
+      .pick(1)
+      .cast();
 
   Parser newline() => pattern('\n\r');
 
@@ -97,8 +97,8 @@ class PListGrammarDefinition extends GrammarDefinition {
       return input.token().trim(whitespace() | comment());
     } else if (input is String) {
       return token(input.toParser());
-    } else if (input is Function) {
-      return token(ref(input));
+    } else if (input is Parser Function()) {
+      return token(ref0(input));
     }
     throw ArgumentError.value(input, 'invalid token parser');
   }

@@ -1,4 +1,8 @@
 
+## 0.2.1
+
+- Fix for `petitparser` 4.1.0
+
 ## 0.2.0
 
 - Null safety
