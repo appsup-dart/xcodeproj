@@ -1,4 +1,8 @@
 
+## 0.2.2
+
+- Fix nullsafety issue
+
 ## 0.2.1
 
 - Fix for `petitparser` 4.1.0

@@ -19,8 +19,9 @@ mixin XCodeProjMixin on SnapshotView {
       .keys
       .map((k) => PBXElement(this as XCodeProj, 'objects/$k'));
 
-  PBXElement? getObject(String uuid) =>
-      snapshot.child('objects/$uuid').value == null
+  PBXElement? getObject(String? uuid) => uuid == null
+      ? null
+      : snapshot.child('objects/$uuid').value == null
           ? null
           : PBXElement(this as XCodeProj, 'objects/$uuid');
 
