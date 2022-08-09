@@ -2,7 +2,8 @@ part of pbx;
 
 mixin PBXBuildFileMixin on PBXElement {
   /// A reference to a [PBXFileReference] element
-  PBXFileElement? get fileRef => project.getObject(get('fileRef')) as PBXFileElement?;
+  PBXFileElement? get fileRef =>
+      project.getObject(get('fileRef')) as PBXFileElement?;
 
   /// A map of key/value pairs for additionnal settings.
   Map<String, String> get settings => getMap('settings');

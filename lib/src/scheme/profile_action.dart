@@ -6,11 +6,10 @@ class ProfileAction extends SchemeAction {
   factory ProfileAction(
       {String buildConfiguration = 'Release',
       bool shouldUseLaunchSchemeArgsEnv = true}) {
-    return ProfileAction._(
-        XmlElement(XmlName('ProfileAction'))
-          ..setAttribute('savedToolIdentifier', '')
-          ..setAttribute('useCustomWorkingDirectory', 'NO')
-          ..setAttribute('debugDocumentVersioning', 'YES'))
+    return ProfileAction._(XmlElement(XmlName('ProfileAction'))
+      ..setAttribute('savedToolIdentifier', '')
+      ..setAttribute('useCustomWorkingDirectory', 'NO')
+      ..setAttribute('debugDocumentVersioning', 'YES'))
       ..buildConfiguration = buildConfiguration
       ..shouldUseLaunchSchemeArgsEnv = shouldUseLaunchSchemeArgsEnv;
   }

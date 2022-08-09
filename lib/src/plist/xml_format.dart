@@ -103,19 +103,15 @@ class XmlPlistEncoder extends Converter<Object, String> {
     }
     if (value is Uint8List) {
       return XmlElement(XmlName('data'))
-        ..innerText = '\n' +
-            RegExp('.{1,76}')
-                .allMatches(base64.encode(value))
-                .map((m) => m.group(0))
-                .join('\n') +
-            '\n';
+        ..innerText =
+            '\n${RegExp('.{1,76}').allMatches(base64.encode(value)).map((m) => m.group(0)).join('\n')}\n';
     }
     if (value is List) {
       var e = XmlElement(XmlName('array'));
 
-      value.forEach((value) {
+      for (var value in value) {
         e.children.add(_toXmlElement(value));
-      });
+      }
       return e;
     }
     if (value is bool) {

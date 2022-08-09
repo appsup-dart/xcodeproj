@@ -21,7 +21,8 @@ mixin PBXProjectMixin on PBXElement {
   PBXGroup? get mainGroup => project.getObject(get('mainGroup')) as PBXGroup?;
 
   /// A reference to a [PBXGroup] element.
-  PBXGroup? get productRefGroup => project.getObject(get('productRefGroup')) as PBXGroup?;
+  PBXGroup? get productRefGroup =>
+      project.getObject(get('productRefGroup')) as PBXGroup?;
 
   /// The relative path of the project.
   String get projectDirPath => get('projectDirPath');

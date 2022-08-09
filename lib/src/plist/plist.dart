@@ -9,7 +9,8 @@ class PList {
 
   final Map<String, dynamic>? content;
 
-  PList.load(this.path) : content = _load(File(path).readAsStringSync()) as Map<String, dynamic>?;
+  PList.load(this.path)
+      : content = _load(File(path).readAsStringSync()) as Map<String, dynamic>?;
 
   static Map? _load(String content) {
     if (content.startsWith('bplist')) {

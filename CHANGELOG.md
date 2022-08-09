@@ -1,3 +1,6 @@
+## 0.2.3
+
+- Apply `lints` fixes, `dart format`, and `dart pub upgrade --major-versions`
 
 ## 0.2.2
 

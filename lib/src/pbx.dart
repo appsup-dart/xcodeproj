@@ -79,7 +79,7 @@ class ChildSnapshotMapView<T> extends ChildSnapshotView
   @override
   void clear() {
     if (_rootSnapshotView is ModifiableSnapshotView) {
-      (_rootSnapshotView as ModifiableSnapshotView).set('$path', {});
+      (_rootSnapshotView as ModifiableSnapshotView).set(path, {});
     } else {
       throw UnsupportedError('This snapshot view is unmodifiable');
     }

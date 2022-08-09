@@ -26,12 +26,12 @@ class AnnotatedValue {
 
   String _annotationToString() {
     if (annotation == null) return '';
-    return ' /*' + annotation! + '*/'; // TODO handle annotation containing '*/'
+    return ' /*${annotation!}*/'; // TODO handle annotation containing '*/'
   }
 
   String _valueToString(String indent) {
     if (value is Uint8List) {
-      return '<' + (value as Uint8List).toHex() + '>';
+      return '<${(value as Uint8List).toHex()}>';
     }
     if (value is String) {
       if (RegExp(r'^[\w_$/:\.-]+$').hasMatch(value)) {
@@ -49,19 +49,10 @@ class AnnotatedValue {
       return '"$content"';
     }
     if (value is List<AnnotatedValue>) {
-      return '(\n' +
-          value
-              .map((v) => indent + '  ' + v._toString(indent + '  '))
-              .join(',\n') +
-          '\n$indent)';
+      return '(\n${value.map((v) => '$indent  ${v._toString('$indent  ')}').join(',\n')}\n$indent)';
     }
     if (value is Map<AnnotatedValue, AnnotatedValue>) {
-      return '{\n' +
-          value.entries
-              .map((e) =>
-                  '$indent  ${e.key} = ${e.value._toString(indent + '  ')};')
-              .join('\n') +
-          '\n$indent}';
+      return '{\n${value.entries.map((e) => '$indent  ${e.key} = ${e.value._toString('$indent  ')};').join('\n')}\n$indent}';
     }
     if (value is DateTime) {
       return (value as DateTime).toIso8601String();
