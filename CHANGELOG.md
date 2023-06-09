@@ -1,3 +1,7 @@
+## 0.2.3
+
+- Upgrade dependency on petitparser to 5.0.0
+- Upgrade dependency on xml to 6.0.0
 
 ## 0.2.2
 
