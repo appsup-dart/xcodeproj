@@ -34,7 +34,7 @@ class XmlPListDecoder extends Converter<String, Object> {
         for (var n in node.children) {
           if (n is XmlElement) {
             if (n.name.local == 'key') {
-              key = n.text;
+              key = n.innerText;
             } else {
               if (key == null) {
                 return FormatException('Missing key element.');
@@ -56,15 +56,15 @@ class XmlPListDecoder extends Converter<String, Object> {
       case 'false':
         return false;
       case 'real':
-        return double.parse(node.text);
+        return double.parse(node.innerText);
       case 'integer':
-        return int.parse(node.text);
+        return int.parse(node.innerText);
       case 'string':
-        return node.text;
+        return node.innerText;
       case 'data':
-        return base64.decode(node.text.replaceAll(RegExp(r'\s'), ''));
+        return base64.decode(node.innerText.replaceAll(RegExp(r'\s'), ''));
       case 'date':
-        return DateTime.parse(node.text);
+        return DateTime.parse(node.innerText);
     }
   }
 }
