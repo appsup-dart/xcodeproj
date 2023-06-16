@@ -64,7 +64,7 @@ void main() {
     });
 
     group('Parsing annotated value', () {
-      var parser = grammar.buildFrom(grammar.annotatedValue());
+      var parser = grammar.build(arguments: grammar.annotatedValue().children);
 
       test('Parsing annotated value with single annotation', () {
         shouldSucceed(
@@ -85,7 +85,9 @@ void main() {
     });
 
     group('Parsing arrays', () {
-      var parser = grammar.buildFrom(grammar.array());
+      final array = grammar.array();
+
+      var parser = grammar.build(arguments: array.children);
       test('Parsing empty array', () {
         shouldSucceed(parser, '()', []);
       });
@@ -117,7 +119,7 @@ void main() {
     });
 
     group('Parsing dictionaries', () {
-      var parser = grammar.buildFrom(grammar.dictionary());
+      var parser = grammar.build(arguments: grammar.dictionary().children);
       test('Parsing an empty dictionary', () {
         shouldSucceed(parser, '{}', {});
         shouldSucceed(parser, '\t\n\t{\n\t\n}', {});

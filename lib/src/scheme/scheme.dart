@@ -5,6 +5,8 @@ class XCScheme extends XmlElementWrapper {
 
   XCScheme._(this._path, XmlElement element) : super(element);
 
+  String get name => path_lib.basename(_path).split('.').first;
+
   factory XCScheme.load(String path) {
     var doc = XmlDocument.parse(File(path).readAsStringSync());
     return XCScheme._(path, doc.findElements('Scheme').first);
