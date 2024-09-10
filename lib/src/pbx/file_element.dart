@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 mixin PBXFileElementMixin on PBXElement {
   /// The filename

@@ -12,7 +12,7 @@ void main() {
     void shouldSucceed(Parser parser, String v, [dynamic expectedValue]) {
       var r = parser.parse(v);
 
-      expect(r.isSuccess, isTrue);
+      expect(r, isA<Success>());
       expect(r.value, expectedValue ?? v);
     }
 

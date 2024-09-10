@@ -1,4 +1,4 @@
-part of xcodeproj.xcscheme;
+part of '../scheme.dart';
 
 class AnalyzeAction extends SchemeAction {
   AnalyzeAction._(XmlElement element) : super(element);

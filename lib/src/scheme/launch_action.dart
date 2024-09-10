@@ -1,4 +1,4 @@
-part of xcodeproj.xcscheme;
+part of '../scheme.dart';
 
 class LaunchAction extends SchemeAction {
   LaunchAction._(XmlElement element) : super(element);

@@ -59,7 +59,7 @@ class PlainPlistEncoder extends Converter<Object, String> {
 
   @override
   String convert(Object input) {
-    return '// !\$*UTF8*\$!\n' + _toAnnotatedValue(input).toString();
+    return '// !\$*UTF8*\$!\n${_toAnnotatedValue(input)}';
   }
 
   AnnotatedValue _toAnnotatedValue(Object object) {

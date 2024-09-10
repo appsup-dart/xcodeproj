@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 mixin PBXBuildPhaseMixin on PBXElement {
   num get buildActionMask => get('buildActionMask');

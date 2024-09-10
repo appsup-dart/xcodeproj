@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 abstract class PBXElement extends ChildSnapshotView {
   // ignore: unused_element

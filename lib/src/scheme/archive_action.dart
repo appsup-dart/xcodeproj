@@ -1,4 +1,4 @@
-part of xcodeproj.xcscheme;
+part of '../scheme.dart';
 
 class ArchiveAction extends SchemeAction {
   ArchiveAction._(XmlElement element) : super(element);

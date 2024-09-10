@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 mixin PBXTargetMixin on PBXElement {
   /// A reference to a [XCConfigurationList] element

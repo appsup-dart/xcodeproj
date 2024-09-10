@@ -32,7 +32,7 @@ void printTree(PBXGroup group, String indent) {
   for (var c in group.children) {
     print('$indent - ${c.name ?? c.path ?? ""}');
     if (c is PBXGroup) {
-      printTree(c, indent + ' ');
+      printTree(c, '$indent ');
     }
   }
 }

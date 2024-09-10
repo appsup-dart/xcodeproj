@@ -1,4 +1,4 @@
-part of xcodeproj.xcscheme;
+part of '../scheme.dart';
 
 class XCScheme extends XmlElementWrapper {
   String _path;

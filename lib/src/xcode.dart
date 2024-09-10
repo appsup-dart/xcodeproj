@@ -48,7 +48,7 @@ class XCodeProj extends ModifiableSnapshotView with XCodeProjMixin {
   final String path;
 
   /// the directory of the project
-  String get projectDir => path_lib.dirname(path) + '/';
+  String get projectDir => '${path_lib.dirname(path)}/';
 
   XCodeProj(this.path)
       : super.fromJson(

@@ -65,27 +65,27 @@ class PListGrammarDefinition extends GrammarDefinition {
         return AnnotatedValue(v, annotation);
       });
 
-  Parser<Map> dictionary() => (token('{') &
+  Parser<Map<AnnotatedValue, AnnotatedValue>> dictionary() => (token('{') &
           keyValue()
-              .separatedBy(token(';'),
-                  includeSeparators: false, optionalSeparatorAtEnd: true)
+              .plusSeparated(token(';'))
               .map((l) =>
-                  Map<AnnotatedValue, AnnotatedValue>.fromEntries(l.cast()))
+                  Map<AnnotatedValue, AnnotatedValue>.fromEntries(l.elements))
               .optionalWith(<AnnotatedValue, AnnotatedValue>{}) &
+          token(';').optional() &
           token('}'))
       .pick(1)
       .cast();
 
-  Parser<MapEntry> keyValue() =>
+  Parser<MapEntry<AnnotatedValue, AnnotatedValue>> keyValue() =>
       (ref0(annotatedValue) & token('=') & ref0(annotatedValue))
           .map((l) => MapEntry<AnnotatedValue, AnnotatedValue>(l[0], l[2]));
 
   Parser<List<AnnotatedValue>> array() => (token('(') &
           (ref0(annotatedValue)
-              .separatedBy(token(','),
-                  includeSeparators: false, optionalSeparatorAtEnd: true)
-              .map((l) => l.cast<AnnotatedValue>())
+              .plusSeparated(token(','))
+              .map((l) => l.elements)
               .optionalWith(<AnnotatedValue>[])) &
+          token(',').optional() &
           token(')'))
       .pick(1)
       .cast();

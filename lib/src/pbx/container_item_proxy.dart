@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 mixin PBXContainerItemProxyMixin on PBXElement {
   /// A reference to a [PBXProject] element

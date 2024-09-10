@@ -1,4 +1,4 @@
-part of xcodeproj.xcscheme;
+part of '../scheme.dart';
 
 class BuildAction extends XmlElementWrapper {
   BuildAction._(XmlElement element) : super(element);

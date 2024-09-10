@@ -1,4 +1,4 @@
-part of pbx;
+part of '../pbx.dart';
 
 mixin XCBuildConfigurationMixin on PBXElement {
   /// The path to a xcconfig file
