@@ -46,11 +46,11 @@ extension ChildSnapshotViewX on ChildSnapshotView {
   T get<T>(String path, {String? format}) =>
       _snapshot.child(path).as(format: format);
 
-  /// Gets and converts the value at [path] to type List<T>
+  /// Gets and converts the value at [path] to type List&lt;T&gt;
   List<T> getList<T>(String path, {String? format}) =>
       _snapshot.child(path).asList(format: format)!;
 
-  /// Gets and converts the value at [path] to type Map<String,T>
+  /// Gets and converts the value at [path] to type Map&lt;String,T&gt;
   Map<String, T> getMap<T>(String path, {String? format}) =>
       ChildSnapshotMapView(_rootSnapshotView, '$_path/$path');
 }
