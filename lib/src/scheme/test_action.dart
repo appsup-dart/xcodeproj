@@ -1,7 +1,7 @@
 part of '../scheme.dart';
 
 class TestAction extends SchemeAction {
-  TestAction._(XmlElement element) : super(element);
+  TestAction._(super.element);
 
   factory TestAction(
       {bool shouldUseLaunchSchemeArgsEnv = true,
@@ -56,7 +56,7 @@ class TestAction extends SchemeAction {
 }
 
 class TestableReference extends XmlElementWrapper {
-  TestableReference._(XmlElement element) : super(element);
+  TestableReference._(super.element);
 
   factory TestableReference({bool skipped = false}) {
     return TestableReference._(XmlElement(XmlName('TestableReference')))
@@ -101,7 +101,7 @@ class TestableReference extends XmlElementWrapper {
 }
 
 class MacroExpansion extends XmlElementWrapper {
-  MacroExpansion._(XmlElement element) : super(element);
+  MacroExpansion._(super.element);
 
   factory MacroExpansion() {
     return MacroExpansion._(XmlElement(XmlName('MacroExpansion')));
@@ -114,7 +114,7 @@ class MacroExpansion extends XmlElementWrapper {
 }
 
 class Test extends XmlElementWrapper {
-  Test._(XmlElement element) : super(element);
+  Test._(super.element);
 
   factory Test() {
     return Test._(XmlElement(XmlName('Test')));

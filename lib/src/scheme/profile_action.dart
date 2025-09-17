@@ -1,7 +1,7 @@
 part of '../scheme.dart';
 
 class ProfileAction extends SchemeAction {
-  ProfileAction._(XmlElement element) : super(element);
+  ProfileAction._(super.element);
 
   factory ProfileAction(
       {String buildConfiguration = 'Release',

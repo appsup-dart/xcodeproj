@@ -1,7 +1,7 @@
 part of '../scheme.dart';
 
 class BuildAction extends XmlElementWrapper {
-  BuildAction._(XmlElement element) : super(element);
+  BuildAction._(super.element);
 
   factory BuildAction(
       {bool buildImplicitDependencies = true,
@@ -31,7 +31,7 @@ class BuildAction extends XmlElementWrapper {
 }
 
 class BuildActionEntry extends XmlElementWrapper {
-  BuildActionEntry._(XmlElement element) : super(element);
+  BuildActionEntry._(super.element);
 
   factory BuildActionEntry(
       {bool buildForAnalyzing = false,
@@ -78,7 +78,7 @@ class BuildActionEntry extends XmlElementWrapper {
 }
 
 class BuildableReference extends XmlElementWrapper {
-  BuildableReference._(XmlElement element) : super(element);
+  BuildableReference._(super.element);
 
   factory BuildableReference({required PBXTarget target}) {
     return BuildableReference._(

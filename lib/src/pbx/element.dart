@@ -2,8 +2,7 @@ part of '../pbx.dart';
 
 abstract class PBXElement extends ChildSnapshotView {
   // ignore: unused_element
-  PBXElement._(XCodeProj rootSnapshotView, String path)
-      : super(rootSnapshotView, path);
+  PBXElement._(XCodeProj super.rootSnapshotView, super.path);
 
   factory PBXElement(XCodeProj rootSnapshotView, String path) {
     var snapshot = rootSnapshotView.snapshot.child(path);

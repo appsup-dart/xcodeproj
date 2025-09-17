@@ -95,7 +95,7 @@ class XCScheme extends XmlElementWrapper {
 }
 
 abstract class SchemeAction extends XmlElementWrapper {
-  SchemeAction(XmlElement element) : super(element);
+  SchemeAction(super.element);
 
   /// The build configuration associated with this action (usually either 'Debug' or 'Release').
   String? get buildConfiguration => get('buildConfiguration');

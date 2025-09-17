@@ -1,4 +1,4 @@
-library xcodeproj.xcscheme;
+library;
 
 import 'dart:collection';
 import 'dart:io';

@@ -1,4 +1,4 @@
-library pbx;
+library;
 
 import 'dart:collection';
 
@@ -59,9 +59,7 @@ class ChildSnapshotMapView<T> extends ChildSnapshotView
     with MapMixin<String, T> {
   final String? format;
 
-  ChildSnapshotMapView(SnapshotView rootSnapshotView, String path,
-      {this.format})
-      : super(rootSnapshotView, path);
+  ChildSnapshotMapView(super.rootSnapshotView, super.path, {this.format});
 
   @override
   T? operator [](Object? key) =>

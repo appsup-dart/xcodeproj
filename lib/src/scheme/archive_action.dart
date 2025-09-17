@@ -1,7 +1,7 @@
 part of '../scheme.dart';
 
 class ArchiveAction extends SchemeAction {
-  ArchiveAction._(XmlElement element) : super(element);
+  ArchiveAction._(super.element);
 
   factory ArchiveAction(
       {String buildConfiguration = 'Release',

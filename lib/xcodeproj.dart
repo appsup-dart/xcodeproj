@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library xcodeproj;
+library;
 
 export 'src/xcode.dart';
 export 'src/pbx.dart';

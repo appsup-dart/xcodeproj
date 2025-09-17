@@ -1,7 +1,7 @@
 part of '../scheme.dart';
 
 class LaunchAction extends SchemeAction {
-  LaunchAction._(XmlElement element) : super(element);
+  LaunchAction._(super.element);
 
   factory LaunchAction(
       {String buildConfiguration = 'Debug',
@@ -77,7 +77,7 @@ class LaunchAction extends SchemeAction {
 }
 
 class BuildableProductRunnable extends XmlElementWrapper {
-  BuildableProductRunnable._(XmlElement element) : super(element);
+  BuildableProductRunnable._(super.element);
 
   factory BuildableProductRunnable({String? runnableDebuggingMode}) {
     return BuildableProductRunnable._(
@@ -99,7 +99,7 @@ class BuildableProductRunnable extends XmlElementWrapper {
 }
 
 class EnvironmentVariable extends XmlElementWrapper {
-  EnvironmentVariable._(XmlElement element) : super(element);
+  EnvironmentVariable._(super.element);
 
   factory EnvironmentVariable({required String key, String? value}) {
     return EnvironmentVariable._(
@@ -120,7 +120,7 @@ class EnvironmentVariable extends XmlElementWrapper {
 
 class EnvironmentVariables extends XmlElementWrapper
     with MapMixin<String?, String> {
-  EnvironmentVariables._(XmlElement element) : super(element);
+  EnvironmentVariables._(super.element);
 
   Set<EnvironmentVariable> get _allVariables => getChildren(
       'EnvironmentVariable', (element) => EnvironmentVariable._(element));
@@ -159,11 +159,11 @@ class EnvironmentVariables extends XmlElementWrapper
 }
 
 class AdditionalOptions extends XmlElementWrapper {
-  AdditionalOptions._(XmlElement element) : super(element);
+  AdditionalOptions._(super.element);
 }
 
 class CommandLineArguments extends XmlElementWrapper with SetMixin<String?> {
-  CommandLineArguments._(XmlElement element) : super(element);
+  CommandLineArguments._(super.element);
 
   Set<CommandLineArgument> get _allArguments => getChildren(
       'CommandLineArgument', (element) => CommandLineArgument._(element));
@@ -205,7 +205,7 @@ class CommandLineArguments extends XmlElementWrapper with SetMixin<String?> {
 }
 
 class CommandLineArgument extends XmlElementWrapper {
-  CommandLineArgument._(XmlElement element) : super(element);
+  CommandLineArgument._(super.element);
 
   factory CommandLineArgument({String? argument}) {
     return CommandLineArgument._(XmlElement(XmlName('CommandLineArgument')))
