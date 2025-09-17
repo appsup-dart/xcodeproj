@@ -2,6 +2,7 @@ name: xcodeproj
 description: A library for reading and modifying XCode projects.
 version: 0.2.4
 homepage: https://github.com/appsup-dart/xcodeproj
+repository: https://github.com/appsup-dart/xcodeproj
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -19,3 +20,19 @@ dependencies:
 dev_dependencies:
   lints: ^6.0.0
   test: ^1.16.0
+  melos: ^7.0.0
+
+melos:
+  useRootAsPackage: true
+
+  ide:
+    intellij: false
+
+  command:
+    version:
+      linkToCommits: true
+      workspaceChangelog: false
+
+  scripts:
+    preversion: 
+      exec: dart test -j 1
