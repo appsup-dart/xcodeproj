@@ -92,7 +92,8 @@ class XCodeProj extends ModifiableSnapshotView with XCodeProjMixin {
     return dir
         .listSync()
         .where((f) => f.path.endsWith('.xcscheme'))
-        .map((f) => XCScheme.load(f.path)) as List<XCScheme>;
+        .map((f) => XCScheme.load(f.path))
+        .toList();
   }
 
   XCScheme createScheme(String name, PBXTarget target) {
