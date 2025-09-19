@@ -1,3 +1,7 @@
+## 0.2.4+2
+
+ - **FIX**: uuids not unique when generated in same millisecond. ([2d87e7db](https://github.com/appsup-dart/xcodeproj/commit/2d87e7db3644706b557e52ea01c30b00710b4ed5))
+
 ## 0.2.4+1
 
  - **REFACTOR**: set min sdk to 3.0.0. ([7dba5197](https://github.com/appsup-dart/xcodeproj/commit/7dba519729295c31b1440f9274271b7e88393d0e))

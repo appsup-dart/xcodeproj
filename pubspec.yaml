@@ -1,6 +1,6 @@
 name: xcodeproj
 description: A library for reading and modifying XCode projects.
-version: 0.2.4+1
+version: 0.2.4+2
 homepage: https://github.com/appsup-dart/xcodeproj
 repository: https://github.com/appsup-dart/xcodeproj
 
