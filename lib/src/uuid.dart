@@ -6,7 +6,7 @@ import 'plist/plain_format.dart';
 import 'dart:math';
 
 class UuidGenerator {
-  final Random _random = Random(DateTime.now().millisecondsSinceEpoch);
+  static final Random _random = Random(DateTime.now().millisecondsSinceEpoch);
 
   String random() {
     return md5
